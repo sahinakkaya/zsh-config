@@ -30,6 +30,9 @@ unsetopt CORRECT
 
 export PATH="/Users/sahin/Library/Python/3.9/bin:$PATH"
 export PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+eval "$(luarocks path --bin)"
+export DYLD_LIBRARY_PATH="$(brew --prefix)/lib"
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
@@ -61,6 +64,7 @@ zinit light-mode for \
 ### End of Zinit's installer chunk
 
 zinit snippet OMZ::plugins/git/git.plugin.zsh
+zinit snippet OMZ::plugins/git-auto-fetch/git-auto-fetch.plugin.zsh
 zinit light skywind3000/z.lua
 
 # ZVM
