@@ -4,3 +4,4 @@ modules/*/cache.zsh
 contrib
 .zsh_history
 .zcompdump
+.zsh_sessions

@@ -47,6 +47,9 @@ if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
 fi
 
 source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+
+fpath+=/opt/homebrew/share/zsh/site-functions
+
 autoload -Uz compinit
 compinit -u
 # following lines are not required after above lines (probably)
@@ -119,8 +122,13 @@ function zvm_after_init() {
     bindkey "\e[1;3B" dirhistory_zle_dirhistory_down
 }
 
+eval "$(direnv hook zsh)"
+
+. "$HOME/.local/bin/env"
+
 export PYENV_ROOT="$HOME/.pyenv"
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+
