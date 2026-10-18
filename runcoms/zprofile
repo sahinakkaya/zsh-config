@@ -46,8 +46,14 @@ typeset -gU cdpath fpath mailpath path
 # Set the list of directories that Zsh searches for programs.
 path=(
   $HOME/{,s}bin(N)
+# {% if SYSTEM.platform == "Mac OS" %}
   /opt/{homebrew,local}/{,s}bin(N)
+  /Applications/Postgres.app/Contents/Versions/latest/bin
+  $HOME/Library/Python/3.9/bin
+# {% end %}
+  $HOME/.fiberplane/bin
   /usr/local/{,s}bin(N)
+  $HOME/scripts
   $path
 )
 
@@ -67,3 +73,9 @@ fi
 if [[ -z "$LESSOPEN" ]] && (( $#commands[(i)lesspipe(|.sh)] )); then
   export LESSOPEN="| /usr/bin/env $commands[(i)lesspipe(|.sh)] %s 2>&-"
 fi
+
+# {% if SYSTEM.platform == "Mac OS" %}
+# Added by OrbStack: command-line tools and integration
+# This won't be added again if you remove it.
+source ~/.orbstack/shell/init.zsh 2>/dev/null || :
+# {% end %}

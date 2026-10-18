@@ -9,3 +9,28 @@
 if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprofile"
 fi
+
+
+export PYENV_ROOT="$HOME/.pyenv"
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+export GOPATH="$HOME/go"
+export NVM_DIR="$HOME/.nvm"
+
+
+# {% if SYSTEM.platform == "Mac OS" %}
+export PNPM_HOME="$HOME/Library/pnpm"
+export DYLD_LIBRARY_PATH=/opt/homebrew/lib
+# {% end %}
+
+
+# if [ ! -S ~/.ssh/ssh_auth_sock ]; then
+#   eval `ssh-agent`
+#   ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
+# fi
+# export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
+#
+export SSH_AUTH_SOCK="$HOME/.bitwarden-ssh-agent.sock"
+
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
+. "$HOME/.cargo/env"
+. "$HOME/.local/bin/env"
