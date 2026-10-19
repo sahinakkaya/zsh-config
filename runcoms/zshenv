@@ -19,8 +19,11 @@ export BUN_INSTALL="$HOME/.bun"
 
 
 # {% if SYSTEM.platform == "Mac OS" %}
-export PNPM_HOME="$HOME/Library/pnpm"
-export DYLD_LIBRARY_PATH=/opt/homebrew/lib
+#<yolk> export PNPM_HOME="$HOME/Library/pnpm"
+#<yolk> export DYLD_LIBRARY_PATH=/opt/homebrew/lib
+#<yolk> export SSH_AUTH_SOCK="$HOME/.bitwarden-ssh-agent.sock"
+# {% else %}
+export SSH_AUTH_SOCK="$HOME/.var/app/com.bitwarden.desktop/data/.bitwarden-ssh-agent.sock"
 # {% end %}
 
 
@@ -30,9 +33,9 @@ export DYLD_LIBRARY_PATH=/opt/homebrew/lib
 # fi
 # export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
 #
-export SSH_AUTH_SOCK="$HOME/.bitwarden-ssh-agent.sock"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
-. "$HOME/.cargo/env"
+[ -s "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
 . "$HOME/.local/bin/env"
+(( ${path[(Ie)$HOME/.cargo/bin]} )) || path=("$HOME/.cargo/bin" $path)

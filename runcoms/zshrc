@@ -22,7 +22,7 @@ fi
 
 
 # Customize to your needs...
-source "${ZDOTDIR:-$HOME}/.aliases"
+source "${ZDOTDIR:-$HOME}/aliases"
 
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGEST_MANUAL_REBIND=true
@@ -49,8 +49,7 @@ fi
 
 source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
 
-source <(COMPLETE=zsh yolk)
-eval $(/opt/homebrew/bin/brew shellenv)
+#source <(COMPLETE=zsh yolk)
 
 # Load a few important annexes, without Turbo
 # (this is currently required for annexes)
@@ -63,6 +62,7 @@ zinit light-mode for \
 ### End of Zinit's installer chunk
 
 zinit snippet OMZ::plugins/git/git.plugin.zsh
+# moved to zoxide
 # zinit light skywind3000/z.lua
 # zinit load wfxr/forgit
 
@@ -77,6 +77,15 @@ function zvm_config() {
 
 zinit ice depth=1
 zinit light jeffreytse/zsh-vi-mode
+
+
+# ctrl_l() {
+#     builtin print -rn -- $'\r\e[0J\e[H\e[22J' >"$TTY"
+#     builtin zle .reset-prompt
+#     builtin zle -R
+# }
+# zle -N ctrl_l
+
 
 # The plugin will auto execute this zvm_after_init function
 function zvm_after_init() {
@@ -103,6 +112,7 @@ function zvm_after_init() {
     bindkey '^a' beginning-of-line
     bindkey '^e' end-of-line
 
+    # bindkey '^l' ctrl_l
 
     # allow ctrl-h, ctrl-w, ctrl-? for char and word deletion (standard behaviour)
     bindkey '^h' backward-kill-word
@@ -147,38 +157,39 @@ crontab() {
 }
 
 # {% if SYSTEM.platform == "Mac OS" %}
-case ":$PATH:" in
-  *":$PNPM_HOME/bin:"*) ;;
-  *) export PATH="$PNPM_HOME/bin:$PATH" ;;
-esac
+#<yolk> case ":$PATH:" in
+  #<yolk> *":$PNPM_HOME/bin:"*) ;;
+  #<yolk> *) export PATH="$PNPM_HOME/bin:$PATH" ;;
+#<yolk> esac
 
-fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
+#<yolk> eval $(/opt/homebrew/bin/brew shellenv)
+#<yolk> fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
 
-# Load NVM only when a Node command is first used.  Sourcing nvm.sh runs
-# `nvm_auto`, which otherwise adds several seconds to every shell startup.
-_nvm_lazy_load() {
-  unset -f nvm node npm npx corepack yarn yarnpkg pnpm pnpx
+#<yolk> # Load NVM only when a Node command is first used.  Sourcing nvm.sh runs
+#<yolk> # `nvm_auto`, which otherwise adds several seconds to every shell startup.
+#<yolk> _nvm_lazy_load() {
+  #<yolk> unset -f nvm node npm npx corepack yarn yarnpkg pnpm pnpx
 
-  if [[ ! -s /opt/homebrew/opt/nvm/nvm.sh ]]; then
-    print -u2 'nvm: /opt/homebrew/opt/nvm/nvm.sh is unavailable'
-    return 127
-  fi
+  #<yolk> if [[ ! -s /opt/homebrew/opt/nvm/nvm.sh ]]; then
+    #<yolk> print -u2 'nvm: /opt/homebrew/opt/nvm/nvm.sh is unavailable'
+    #<yolk> return 127
+  #<yolk> fi
 
-  source /opt/homebrew/opt/nvm/nvm.sh
-  [[ -s /opt/homebrew/opt/nvm/etc/bash_completion.d/nvm ]] && \
-    source /opt/homebrew/opt/nvm/etc/bash_completion.d/nvm
-  "$@"
-}
+  #<yolk> source /opt/homebrew/opt/nvm/nvm.sh
+  #<yolk> [[ -s /opt/homebrew/opt/nvm/etc/bash_completion.d/nvm ]] && \
+    #<yolk> source /opt/homebrew/opt/nvm/etc/bash_completion.d/nvm
+  #<yolk> "$@"
+#<yolk> }
 
-nvm()      { _nvm_lazy_load nvm "$@"; }
-node()     { _nvm_lazy_load node "$@"; }
-npm()      { _nvm_lazy_load npm "$@"; }
-npx()      { _nvm_lazy_load npx "$@"; }
-corepack() { _nvm_lazy_load corepack "$@"; }
-yarn()     { _nvm_lazy_load yarn "$@"; }
-yarnpkg()  { _nvm_lazy_load yarnpkg "$@"; }
-pnpm()     { _nvm_lazy_load pnpm "$@"; }
-pnpx()     { _nvm_lazy_load pnpx "$@"; }
+#<yolk> nvm()      { _nvm_lazy_load nvm "$@"; }
+#<yolk> node()     { _nvm_lazy_load node "$@"; }
+#<yolk> npm()      { _nvm_lazy_load npm "$@"; }
+#<yolk> npx()      { _nvm_lazy_load npx "$@"; }
+#<yolk> corepack() { _nvm_lazy_load corepack "$@"; }
+#<yolk> yarn()     { _nvm_lazy_load yarn "$@"; }
+#<yolk> yarnpkg()  { _nvm_lazy_load yarnpkg "$@"; }
+#<yolk> pnpm()     { _nvm_lazy_load pnpm "$@"; }
+#<yolk> pnpx()     { _nvm_lazy_load pnpx "$@"; }
 # {% end %}
 
 # if [[ -n $GHOSTTY_RESOURCES_DIR ]]; then
