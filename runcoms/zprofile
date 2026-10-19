@@ -47,9 +47,7 @@ typeset -gU cdpath fpath mailpath path
 path=(
   $HOME/{,s}bin(N)
 # {% if SYSTEM.platform == "Mac OS" %}
-  /opt/{homebrew,local}/{,s}bin(N)
   /Applications/Postgres.app/Contents/Versions/latest/bin
-  $HOME/Library/Python/3.9/bin
 # {% end %}
   $HOME/.fiberplane/bin
   /usr/local/{,s}bin(N)

@@ -12,6 +12,7 @@ fi
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
+fpath=("${ZDOTDIR:-$HOME}/completions" $fpath)
 
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
@@ -47,11 +48,9 @@ if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
 fi
 
 source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
-autoload -Uz compinit
-compinit -u
-# following lines are not required after above lines (probably)
-# autoload -Uz _zinit
-# (( ${+_comps} )) && _comps[zinit]=_zinit
+
+source <(COMPLETE=zsh yolk)
+eval $(/opt/homebrew/bin/brew shellenv)
 
 # Load a few important annexes, without Turbo
 # (this is currently required for annexes)
@@ -68,7 +67,6 @@ zinit snippet OMZ::plugins/git/git.plugin.zsh
 # zinit load wfxr/forgit
 
 
-fpath=(~/.config/zsh/completions $fpath)
 # ZVM
 function zvm_config() {
   ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
@@ -130,8 +128,6 @@ function y() {
 }
 
 ulimit -n 12288
-# eval "$(pyenv init -)"
-# eval "$(pyenv virtualenv-init -)"
 
 eval "$(direnv hook zsh)"
 eval "$(zoxide init zsh --cmd j)"
@@ -158,8 +154,31 @@ esac
 
 fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
 
-[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+# Load NVM only when a Node command is first used.  Sourcing nvm.sh runs
+# `nvm_auto`, which otherwise adds several seconds to every shell startup.
+_nvm_lazy_load() {
+  unset -f nvm node npm npx corepack yarn yarnpkg pnpm pnpx
+
+  if [[ ! -s /opt/homebrew/opt/nvm/nvm.sh ]]; then
+    print -u2 'nvm: /opt/homebrew/opt/nvm/nvm.sh is unavailable'
+    return 127
+  fi
+
+  source /opt/homebrew/opt/nvm/nvm.sh
+  [[ -s /opt/homebrew/opt/nvm/etc/bash_completion.d/nvm ]] && \
+    source /opt/homebrew/opt/nvm/etc/bash_completion.d/nvm
+  "$@"
+}
+
+nvm()      { _nvm_lazy_load nvm "$@"; }
+node()     { _nvm_lazy_load node "$@"; }
+npm()      { _nvm_lazy_load npm "$@"; }
+npx()      { _nvm_lazy_load npx "$@"; }
+corepack() { _nvm_lazy_load corepack "$@"; }
+yarn()     { _nvm_lazy_load yarn "$@"; }
+yarnpkg()  { _nvm_lazy_load yarnpkg "$@"; }
+pnpm()     { _nvm_lazy_load pnpm "$@"; }
+pnpx()     { _nvm_lazy_load pnpx "$@"; }
 # {% end %}
 
 # if [[ -n $GHOSTTY_RESOURCES_DIR ]]; then

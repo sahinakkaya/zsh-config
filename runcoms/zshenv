@@ -11,10 +11,11 @@ if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; t
 fi
 
 
-export PYENV_ROOT="$HOME/.pyenv"
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 export GOPATH="$HOME/go"
 export NVM_DIR="$HOME/.nvm"
+export YOLK_DIR="$HOME/dotfiles"
+export BUN_INSTALL="$HOME/.bun"
 
 
 # {% if SYSTEM.platform == "Mac OS" %}
@@ -30,6 +31,7 @@ export DYLD_LIBRARY_PATH=/opt/homebrew/lib
 # export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
 #
 export SSH_AUTH_SOCK="$HOME/.bitwarden-ssh-agent.sock"
+export PATH="$BUN_INSTALL/bin:$PATH"
 
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 . "$HOME/.cargo/env"
