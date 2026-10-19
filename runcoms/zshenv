@@ -38,4 +38,3 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 [ -s "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
 . "$HOME/.local/bin/env"
-(( ${path[(Ie)$HOME/.cargo/bin]} )) || path=("$HOME/.cargo/bin" $path)
