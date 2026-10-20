@@ -173,3 +173,5 @@ crontab() {
 
 # nvm supplies Node, npm, and global package commands from the user directory.
 [[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"
+# Ensure custom scripts take precedence over NVM executables.
+path=("$HOME/.local/bin" ${path:#"$HOME/.local/bin"})
