@@ -17,6 +17,9 @@ export NVM_DIR="$HOME/.nvm"
 export YOLK_DIR="$HOME/dotfiles"
 export BUN_INSTALL="$HOME/.bun"
 
+# Make commands installed with go install available in every zsh session.
+path=("$GOPATH/bin" ${path:#"$GOPATH/bin"})
+
 
 # {% if SYSTEM.platform == "Mac OS" %}
 #<yolk> export PNPM_HOME="$HOME/Library/pnpm"
