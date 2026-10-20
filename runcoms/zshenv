@@ -37,4 +37,4 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 [ -s "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
-. "$HOME/.local/bin/env"
+[[ -r "$HOME/.local/bin/env" ]] && source "$HOME/.local/bin/env"
