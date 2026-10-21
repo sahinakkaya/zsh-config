@@ -6,3 +6,6 @@ contrib
 
 .zsh_history
 .zcompdump
+/.git
+/.deployed_cache
+/.yolk_git

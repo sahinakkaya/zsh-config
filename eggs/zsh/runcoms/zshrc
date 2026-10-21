@@ -139,8 +139,6 @@ function y() {
 
 ulimit -n 12288
 
-eval "$(direnv hook zsh)"
-eval "$(zoxide init zsh --cmd j)"
 
 
 
@@ -166,12 +164,15 @@ crontab() {
 #<yolk> fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
 
 # {% end %}
+#
+eval "$(direnv hook zsh)"
+eval "$(zoxide init zsh --cmd j)"
 
 # if [[ -n $GHOSTTY_RESOURCES_DIR ]]; then
 #   source $HOME/.config/ghostty/ghostty-integration.zsh
 # fi
 
 # nvm supplies Node, npm, and global package commands from the user directory.
-[[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"
+#[[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"
 # Ensure custom scripts take precedence over NVM executables.
 path=("$HOME/.local/bin" ${path:#"$HOME/.local/bin"})
