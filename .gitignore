@@ -2,6 +2,7 @@
 *.zwc.old
 modules/*/cache.zsh
 contrib
+.yolk_git
 
 .zsh_history
 .zcompdump

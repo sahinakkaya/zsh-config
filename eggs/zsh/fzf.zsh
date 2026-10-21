@@ -30,11 +30,11 @@ source "/usr/share/fzf/shell/key-bindings.zsh"
 
 theme=$(darkman get)
 if [[ "$theme" == "dark" ]]; then
-  # . "$ZDOTDIR/fzf-themes/tokyonight_night.zsh"
-  . "$ZDOTDIR/fzf-themes/kanagawa_night.zsh"
+ # . "$ZDOTDIR/fzf-themes/tokyonight_night.zsh"
+. "$ZDOTDIR/fzf-themes/kanagawa_night.zsh"
 else
-  # . "$ZDOTDIR/fzf-themes/tokyonight_day.zsh"
-  . "$ZDOTDIR/fzf-themes/kanagawa_day.zsh"
+# . "$ZDOTDIR/fzf-themes/tokyonight_day.zsh"
+. "$ZDOTDIR/fzf-themes/kanagawa_day.zsh"
 fi
 # {% end %}
 export FZF_DEFAULT_OPTS_FILE="$HOME/.config/fzf/fzfrc"
