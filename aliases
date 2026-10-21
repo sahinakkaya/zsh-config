@@ -1,0 +1,97 @@
+# alias af=alias-finder
+alias icat='kitten icat'
+alias ssh='kitten ssh'
+alias rm='echo "Use trash-cli instead of rm. Or use /bin/rm"'
+alias rmv='trash'
+alias eww='eww -c ~/.config/eww/new_bar'
+diary() {
+  local day title timestamp
+  day=$(date '+%Y-%m-%d')
+  title=$(date '+%B %d, %Y')
+  timestamp=$(date '+%A, %H:%M')
+  nvim "$HOME/Documents/vip/${day}.md" "+normal i${title}" "+normal o${timestamp}"
+}
+alias di='diary'
+dit() {
+  nvim "$HOME/Documents/vip/$(date '+%Y-%m-%d').md"
+}
+alias .b="cd ~/.local/bin"
+alias .s="cd ~/scripts"
+alias .g="cd ~/GitRepositories"
+alias .c="cd ~/.config"
+alias .p="cd ~/Pictures"
+alias .v="cd ~/Videos"
+alias .d="cd ~/Downloads"
+alias .pr="cd ~/mntpts/primary"
+alias .se="cd ~/mntpts/secondary"
+alias .te="cd ~/mntpts/tertiary"
+alias gs="vim +0Git \"+normal gU\""
+alias menu="menu | lolcat"
+alias nomnom="menu | lolcat"
+alias so="shrout"
+alias sf="shrfile"
+alias co="cpyout"
+alias cf="cpyfile"
+alias emacs="emacsclient -c -a emacs"
+alias ls=lsd
+alias ltr="ls -ltr"
+alias lsl="clear; ls"
+alias lll="clear; ll"
+alias rake='noglob bundled_rake'
+alias weather='curl wttr.in'
+alias gdm='gd master'
+alias s='gst .'
+alias d='gd .'
+alias pls="sudo"
+alias p="pyenv"
+alias cat="bat"
+alias bd="batdiff"
+alias man="batman"
+alias cd.="cd .."
+alias cd..="cd .."
+alias xd="xdg-open &>/dev/null"
+alias xd.="xdg-open &>/dev/null ."
+alias suod="sudo"
+alias sduo="sudo"
+# alias zz='z -c'      # restrict matches to subdirs of $PWD
+# alias zi='z -I'      # use fzf to select in multiple matches
+# alias j=z
+# alias ji='z -I' # for z.lua
+# alias jj='z -c'
+alias jb='j "$(git rev-parse --show-toplevel)"'
+alias t="todo.sh"
+alias ta="todo.sh add"
+alias tl="todo.sh list"
+alias td="todo.sh do"
+alias tp="todo.sh pri"
+#alias nvim="nvim --listen ~/.config/nvim/sockets/$$"
+alias vim="nvim"
+alias v="vim \`fzf\`"
+alias viz="pushd ${ZDOTDIR:-$HOME}; vim .zshrc && popd"
+alias vizh="pushd ${ZDOTDIR:-$HOME}/; vim .zsh_history && popd"
+alias vizp="pushd ${ZDOTDIR:-$HOME}/; vim .zpreztorc && popd"
+alias via="pushd ${ZDOTDIR:-$HOME}/; vim aliases && popd"
+alias vit="pushd ~/.config/tmux/; vim tmux.conf && popd"
+alias vik="pushd ~/.config/kitty/; vim kitty.conf && popd"
+alias vip="pushd ~/.config/paneru/; vim paneru.toml && popd"
+alias vih="pushd ~/.config/hypr/; vim hyprland.conf && popd"
+alias viy="pushd ~/.config/yabai/; vim yabairc && popd"
+alias viv="pushd ~/.config/nvim; vim init.lua && popd"
+alias vin="pushd ~/.config/nvim; vim init.lua && popd"
+alias vi3="pushd ~/.config/i3/; vim config && popd"
+alias viq="pushd ~/.config/qtile/; vim config.py && popd"
+alias top='htop'
+alias ftop='btop' # fancy top
+alias cp='cp -ri'
+alias mv='mv -i'
+alias mkdir='mkdir -p'
+# alias dotfiles='/usr/bin/git --git-dir=$HOME/.dots/ --work-tree=$HOME'
+# alias dots='/usr/bin/git --git-dir=$HOME/.dots/ --work-tree=$HOME'
+alias dots='yolk git'
+alias dos='dots status'
+alias dos.='dots status .'
+alias dod='dots diff'
+alias dod.='dots diff .'
+# alias ssh='TERM=xterm-256color ssh'
+alias arm="env /usr/bin/arch -arm64 /bin/zsh --login"
+alias intel="env /usr/bin/arch -x86_64 /bin/zsh --login"
