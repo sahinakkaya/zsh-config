@@ -92,6 +92,8 @@ alias dos='dots status'
 alias dos.='dots status .'
 alias dod='dots diff'
 alias dod.='dots diff .'
+alias yolkz='YOLK_DIR=$YOLK_DIR/../zsh/ yolk'
+alias dotz='yolkz git'
 # alias ssh='TERM=xterm-256color ssh'
 alias arm="env /usr/bin/arch -arm64 /bin/zsh --login"
 alias intel="env /usr/bin/arch -x86_64 /bin/zsh --login"

@@ -14,7 +14,7 @@ fi
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 export GOPATH="$HOME/go"
 export NVM_DIR="$HOME/.nvm"
-export YOLK_DIR="$HOME/dotfiles"
+export YOLK_DIR="$HOME/.dotfiles/main"
 export BUN_INSTALL="$HOME/.bun"
 
 # Make commands installed with go install available in every zsh session.
