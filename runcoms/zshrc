@@ -150,12 +150,23 @@ ulimit -n 12288
 # eval "$(luarocks --bin)"
 
 crontab() {
-  if [ "$1" = "-r" ]; then
-    echo "Refusing to run crontab -r"
-    echo "Use: crontab -l > backup && crontab -e"
-    echo "I got you, future self!"
+  if [[ "$1" == "-r" ]]; then
+    local counter_file="${ZDOTDIR:-$HOME}/.crontab-counter"
+    local count=0
+
+    [[ -r "$counter_file" ]] && read -r count < "$counter_file"
+    [[ "$count" == <-> ]] || count=0
+    (( count += 1 ))
+    printf '%s\n' "$count" >! "$counter_file"
+
+    print -r -- 'Refusing to run crontab -r'
+    print -r -- 'Use: crontab -l > backup && crontab -e'
+    print -r -- ''
+    print -r -- 'I got you, future self!'
+    print -r -- "Number of times I saved your a\$\$: $count"
     return 1
   fi
+
   command crontab "$@"
 }
 
