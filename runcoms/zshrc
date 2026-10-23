@@ -24,9 +24,19 @@ fi
 # Customize to your needs...
 #
 
-if [[ -r "${XDG_CONFIG_HOME:-$HOME/.config}/shell/common-aliases" ]]; then
-  source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/common-aliases"
-fi
+
+
+source_if_exists() {
+  local file="$1"
+  [[ -r "$file" ]] && source "$file"
+}
+
+config_dir="${XDG_CONFIG_HOME:-$HOME/.config}/shell"
+
+source_if_exists "$config_dir/zsh-paths.zsh"
+source_if_exists "$config_dir/common-aliases"
+
+
 source "${ZDOTDIR:-$HOME}/aliases"
 
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
@@ -170,16 +180,6 @@ crontab() {
   command crontab "$@"
 }
 
-# {% if SYSTEM.platform == "Mac OS" %}
-#<yolk> case ":$PATH:" in
-  #<yolk> *":$PNPM_HOME/bin:"*) ;;
-  #<yolk> *) export PATH="$PNPM_HOME/bin:$PATH" ;;
-#<yolk> esac
-
-#<yolk> eval $(/opt/homebrew/bin/brew shellenv)
-#<yolk> fpath=(/opt/homebrew/share/zsh/site-functions $fpath)
-
-# {% end %}
 #
 eval "$(direnv hook zsh)"
 eval "$(zoxide init zsh --cmd j)"

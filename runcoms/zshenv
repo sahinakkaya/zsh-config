@@ -18,15 +18,6 @@ fi
 path=("$GOPATH/bin" ${path:#"$GOPATH/bin"})
 
 
-# {% if SYSTEM.platform == "Mac OS" %}
-#<yolk> export PNPM_HOME="$HOME/Library/pnpm"
-#<yolk> export DYLD_LIBRARY_PATH=/opt/homebrew/lib
-#<yolk> export SSH_AUTH_SOCK="$HOME/.bitwarden-ssh-agent.sock"
-# {% else %}
-export SSH_AUTH_SOCK="$HOME/.var/app/com.bitwarden.desktop/data/.bitwarden-ssh-agent.sock"
-# {% end %}
-
-
 # if [ ! -S ~/.ssh/ssh_auth_sock ]; then
 #   eval `ssh-agent`
 #   ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock
